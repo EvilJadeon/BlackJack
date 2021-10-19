@@ -1,28 +1,32 @@
+# подключение классов
+require_relative 'card'
 # Класс карточной колоды
 class Deck
-  # объявление геттеров и сеттеров
-  attr_accessor :deck_of_cards
-  # создание изначальной карточной колоды
-  @deck_of_cards = [
-    '2♣', '3♣', '4♣', '5♣', '6♣', '7♣', '8♣', '9♣', '10♣', 'J♣', 'Q♣', 'K♣', 'A♣',
-    '2♥', '3♥', '4♥', '5♥', '6♥', '7♥', '8♥', '9♥', '10♥', 'J♥', 'Q♥', 'K♥', 'A♥',
-    '2♠', '3♠', '4♠', '5♠', '6♠', '7♠', '8♠', '9♠', '10♠', 'J♠', 'Q♠', 'K♠', 'A♠',
-    '2♦', '3♦', '4♦', '5♦', '6♦', '7♦', '8♦', '9♦', '10♦', 'J♦', 'Q♦', 'K♦', 'A♦'
-  ]
+  # объявление геттеров
+  attr_reader :deck  
   # метод - конструктор
   def initialize
-    shuffle_deck
+    @deck = []
+    add_and_shuffle!
   end
-  # метод для перемешивания колоды
-  def shuffle_deck
-    @deck_of_cards.shuffle.reverse.shuffle.reverse.shuffle
-  end
-  # метод выбора карты (в скобках - количество)
-  def choose_card(qty)
-    qty.times do
-       puts @deck_of_cards[rand(0..51)]
+  # метод для заполнения и перемешивания колоды
+  def add_and_shuffle!
+    # заполнение колоды
+    Card::NAME.each do |name|
+      Card::SUIT.each do |suit|
+        @deck << Card.new(name, suit)
+      end
     end
-    # после выбора карт - обязательно удалить их из колоды
-    @deck_of_cards.delete()
+    # перемешивание колоды
+    @deck.shuffle!.reverse!.shuffle!.reverse!.shuffle!
+  end
+  # метод выдачи карты из колоды
+  def issuing_card
+    @deck[-1]
+    delete_card
+  end
+  # метод удаления карты из колоды
+  def delete_card
+    @deck.pop
   end
 end
