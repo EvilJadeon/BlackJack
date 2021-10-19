@@ -186,7 +186,7 @@ class Game
   end
   # метод пропуска хода дилером
   def dealer_skip
-    @dealer_points >= 17 ? 'Дилер пропускает ход' : 'Дилер добавляет карту' && add_card_to_dealer
+    @dealer_points >= 17 ? puts('Дилер пропускает ход') : add_card_to_dealer && puts('Дилер взял карту')
     puts
     sleep 1
   end
