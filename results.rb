@@ -6,29 +6,29 @@ module Results
     # Если сумма очков у игрока и дилера одинаковая, то объявляется ничья и деньги из банка возвращаются игрокам
     # Сумма из банка игры переходит к выигравшему
     if @player_points == @dealer_points
-      @@bank = 0
+      $bank = 0
       @player.bank += 10
       @dealer.bank += 10
       puts
       puts 'Ничья'
     elsif @player_points > @dealer_points && @player_points <= 21
-      @player.bank += @@bank
-      @@bank = 0
+      @player.bank += $bank
+      $bank = 0
       puts
       puts "Победил #{@player.name}!"
     elsif @player_points < @dealer_points && @dealer_points <= 21
-      @dealer.bank += @@bank
-      @@bank = 0
+      @dealer.bank += $bank
+      $bank = 0
       puts
       puts 'Победил дилер!'
     elsif @player_points > @dealer_points && @player_points > 21
-      @dealer.bank += @@bank
-      @@bank = 0
+      @dealer.bank += $bank
+      $bank = 0
       puts
       puts 'Победил дилер!'
     elsif @player_points < @dealer_points && @dealer_points > 21
-      @player.bank += @@bank
-      @@bank = 0
+      @player.bank += $bank
+      $bank = 0
       puts
       puts "Победил #{@player.name}!"
     end
@@ -56,7 +56,7 @@ module Results
   end
   # метод для "ещё одной игры"
   def one_more_game
-    @@bank = 20
+    $bank = 20
     @dealer.bank -= 10
     @player.bank -= 10
     @player.cards = []

@@ -15,8 +15,8 @@ class Game
   include Results
   # создание геттеров и сеттеров
   attr_accessor :player_points, :dealer_points
-  # объявление необходимых переменных класса
-  @@bank = 0
+  # объявление необходимых переменных
+  $bank = 0
   # создание константы для действий
   ACTIONS = {
     1 => :player_skip, 2 => :add_card_to_player, 3 => :show_all_cards,
@@ -34,7 +34,7 @@ class Game
     @deck = Deck.new
     @player_points = 0
     @dealer_points = 0
-    @@bank += 20
+    $bank += 20
     @player.bank -= 10
     @dealer.bank -= 10
     sleep 1
@@ -45,7 +45,7 @@ class Game
     puts 'Сделаны ставки по 10$ от игрока и дилера'
     sleep 1
     puts
-    puts "Банк игры: #{@@bank}"
+    puts "Банк игры: #{$bank}"
     sleep 1
     puts
     puts 'Раздача карт'
