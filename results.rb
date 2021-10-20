@@ -15,44 +15,38 @@ module Results
       @player.bank += $bank
       $bank = 0
       puts
-      puts "Победил #{@player.name}!"
+      puts "Победил #{@player.name}"
     elsif @player_points < @dealer_points && @dealer_points <= 21
       @dealer.bank += $bank
       $bank = 0
       puts
-      puts 'Победил дилер!'
+      puts 'Победил дилер'
     elsif @player_points > @dealer_points && @player_points > 21
       @dealer.bank += $bank
       $bank = 0
       puts
-      puts 'Победил дилер!'
+      puts 'Победил дилер'
     elsif @player_points < @dealer_points && @dealer_points > 21
       @player.bank += $bank
       $bank = 0
       puts
-      puts "Победил #{@player.name}!"
+      puts "Победил #{@player.name}"
     end
   end
   # метод открытия всех карт и подсчета очков
   def show_all_cards
     puts 'Ваши карты:'
     show_player_cards
-    sleep 1
-    puts
-    puts "Ваши очки: #{@player_points}"
-    sleep 1
-    puts
+    puts ", очки: #{@player_points}, банк: #{@player.bank}$"
+    sleep 2
     puts 'Карты дилера:'
     show_dealer_cards
-    sleep 1
-    puts
-    puts "Очки дилера: #{@dealer_points}"
+    puts ", очки: #{@dealer_points}, банк: #{@dealer.bank}$"
+    sleep 2
     calculation_of_results
     puts
-    puts "Ваш банк: #{@player.bank}"
-    puts
-    puts "Банк дилера: #{@dealer.bank}"
-    puts
+    sleep 2
+    puts "Ваш банк: #{@player.bank}$, банк дилера: #{@dealer.bank}$"
   end
   # метод для "ещё одной игры"
   def one_more_game
@@ -63,10 +57,6 @@ module Results
     @dealer.cards = []
     @player_points = 0
     @dealer_points = 0
-    puts "Ваш банк: #{@player.bank}"
-    puts
-    puts "Банк дилера: #{@dealer.bank}"
-    puts
     sleep 2
     start_game
   end

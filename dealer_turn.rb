@@ -8,14 +8,13 @@ module DealerTurn
   # метод, показывающий карты дилера со *
   def show_dealer_cards_hide
     @dealer.cards.each do |card|
-      print "#{card.name.gsub(/\w/, '*')}#{card.suit.gsub(/./, '*')} "
-      puts
+      print " #{card.name.gsub(/\w/, '*')}#{card.suit.gsub(/./, '*')} "
     end
   end
   # метод, показывающий карты дилера
   def show_dealer_cards
     @dealer.cards.each do |card|
-      print "#{card.name}#{card.suit} "
+      print " #{card.name}#{card.suit} "
     end
   end
   # метод подсчета суммы очков дилера
@@ -32,16 +31,14 @@ module DealerTurn
   def add_card_to_dealer
     @dealer.cards << @deck.issuing_card
     @dealer_points = 0
+    add_dealer_points
     puts 'Карты дилера:'
     puts
     show_dealer_cards_hide
-    add_dealer_points
     puts
   end
   # метод пропуска хода дилером
   def dealer_skip
     @dealer_points >= 17 ? puts('Дилер пропускает ход') : add_card_to_dealer && puts('Дилер взял карту')
-    puts
-    sleep 1
   end
 end

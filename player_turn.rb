@@ -7,8 +7,7 @@ module PlayerTurn
   end
   # метод, показывающий карты игрока
   def show_player_cards
-    @player.cards.each {|card| print "#{card.name}#{card.suit} "}
-    puts
+    @player.cards.each {|card| print " #{card.name}#{card.suit} "}
   end
   # метод подсчета суммы очков игрока
   def add_player_points
@@ -24,18 +23,18 @@ module PlayerTurn
   def add_card_to_player
     @player.cards << @deck.issuing_card
     @player_points = 0
+    add_player_points
+    puts 'Вы взяли карту'
+    puts
     puts 'Ваши карты:'
     puts
     show_player_cards
-    add_player_points
     puts
     dealer_skip
-    puts
   end
   # метод пропуска хода игроком
   def player_skip
-    puts
-    print "#{@player.name} пропускает ход"
+    puts 'Вы пропускате ход'
     dealer_skip
   end
 end

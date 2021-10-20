@@ -29,7 +29,9 @@ class Game
     player_name = gets
     @player = Player.new(player_name)
     sleep 1
+    puts
     puts 'Игра начинается!'
+    puts
     @dealer = Dealer.new
     @deck = Deck.new
     @player_points = 0
@@ -45,7 +47,7 @@ class Game
     puts 'Сделаны ставки по 10$ от игрока и дилера'
     sleep 1
     puts
-    puts "Банк игры: #{$bank}"
+    puts "Банк игры: #{$bank}$"
     sleep 1
     puts
     puts 'Раздача карт'
