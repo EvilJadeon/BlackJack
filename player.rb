@@ -3,11 +3,11 @@ class Player
   # создание геттеров
   attr_reader :name
   # создание геттеров и сеттеров
-  attr_accessor :bank, :cards
+  attr_accessor :bank, :hand
   # метод-конструктор
   def initialize(name)
     @bank = 100
     @name = name
-    @cards = []
+    @hand = Hand.new
   end
 end

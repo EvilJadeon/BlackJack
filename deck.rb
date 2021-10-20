@@ -18,12 +18,11 @@ class Deck
       end
     end
     # перемешивание колоды
-    @deck.shuffle!.reverse!.shuffle!.reverse!.shuffle!
+    @deck.shuffle!
   end
   # метод выдачи карты из колоды
   def issuing_card
-    @deck[-1]
-    delete_card
+    @deck.pop
   end
   # метод удаления карты из колоды
   def delete_card
