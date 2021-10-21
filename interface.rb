@@ -127,20 +127,4 @@ class Interface
     sleep 2
     puts "Ваш банк: #{@player.bank}$, банк дилера: #{@dealer.bank}$"
   end
-  # метод для "ещё одной игры"
-  def one_more_game
-    $bank = 20
-    @dealer.bank -= 10
-    @player.bank -= 10
-    @player.hand.cards = []
-    @dealer.hand.cards = []
-    @player.hand.points = 0
-    @dealer.hand.points = 0
-    @deck = Deck.new
-    2.times {@player.hand.add_card(@deck.issuing_card)}
-    @player.hand.counting_points(@player)
-    2.times {@dealer.hand.add_card(@deck.issuing_card)}
-    @dealer.hand.counting_points(@dealer)
-    
-  end
 end

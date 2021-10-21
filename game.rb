@@ -19,7 +19,7 @@ class Game
     1 => 'Пропустить ход (ход переходит к дилеру)',
     2 => 'Добавить карту (если у вас не более двух карт в руках)',
     3 => 'Открыть все карты и посчитать результаты',
-    4 => 'Ещё одну и всё!', 5 => 'Выход из игры'
+    4 => 'Выход из игры'
   }
 
   @actions.each {|key, value| puts "#{key} - #{value}"}
@@ -36,8 +36,6 @@ class Game
     when 3
       @interface.show_all_cards
     when 4
-      @interface.one_more_game
-    when 5
       exit
     end
   end
