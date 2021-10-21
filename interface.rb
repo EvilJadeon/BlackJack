@@ -4,13 +4,14 @@ require_relative 'dealer'
 require_relative 'deck'
 require_relative 'player'
 require_relative 'hand'
-require_relative 'game'
+
 class Interface
   attr_reader :player, :dealer
- 
+  
+  # объявление переменной для игрового банка
+  $bank = 0
+  
   def initialize
-    # объявление переменной для игрового банка
-    $bank = 0
     # запрос имени игрока и его создание
     print 'Введите ваше имя: '
     name = gets
@@ -34,13 +35,17 @@ class Interface
   # метод добавления карты игроку
   def add_card_to_player
     @player.hand.add_card(@deck.issuing_card)
+    @player.hand.counting_points(@player)
     puts
     show_player_cards
+    puts "Ваши очки: #{@player.hand.points}"
+    puts
     dealer_skip
   end
   # метод добавления карты дилеру
   def add_card_to_dealer
     @dealer.hand.add_card(@deck.issuing_card)
+    @dealer.hand.counting_points(@dealer)
   end
   # метод, показывающий карты игрока
   def show_player_cards
@@ -66,6 +71,12 @@ class Interface
   # метод пропуска хода дилером
   def dealer_skip
     @dealer.hand.points >= 17 ? puts('Дилер пропускает ход') : @dealer.hand.add_card(@deck.issuing_card) && puts('Дилер взял карту')
+    @dealer.hand.points = 0
+    @dealer.hand.counting_points(@dealer)
+    puts
+    puts "Карты дилера: "
+    show_dealer_cards_hide
+    puts
   end
   # метод подсчета результатов
   def calculation_of_results
@@ -125,7 +136,11 @@ class Interface
     @dealer.hand.cards = []
     @player.hand.points = 0
     @dealer.hand.points = 0
-    sleep 2
+    @deck = Deck.new
+    2.times {@player.hand.add_card(@deck.issuing_card)}
+    @player.hand.counting_points(@player)
+    2.times {@dealer.hand.add_card(@deck.issuing_card)}
+    @dealer.hand.counting_points(@dealer)
     
   end
 end
