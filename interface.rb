@@ -4,6 +4,7 @@ require_relative 'dealer'
 require_relative 'deck'
 require_relative 'player'
 require_relative 'hand'
+require_relative 'game'
 
 class Interface
   attr_reader :player, :dealer
@@ -126,5 +127,11 @@ class Interface
     puts
     sleep 2
     puts "Ваш банк: #{@player.bank}$, банк дилера: #{@dealer.bank}$"
+  end
+  # метод для "еще одной игры"
+  def one_more_game
+    @deck = Deck.new
+    @game = Game.new
+    @game.start
   end
 end
