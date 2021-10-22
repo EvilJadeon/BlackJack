@@ -1,14 +1,18 @@
+# frozen_string_literal: true
+
 # подключение классов
 require_relative 'card'
 # Класс карточной колоды
 class Deck
   # объявление геттеров
-  attr_reader :deck  
+  attr_reader :deck
+
   # метод - конструктор
   def initialize
     @deck = []
     add_and_shuffle!
   end
+
   # метод для заполнения и перемешивания колоды
   def add_and_shuffle!
     # заполнение колоды
@@ -20,11 +24,8 @@ class Deck
     # перемешивание колоды
     @deck.shuffle!
   end
-  # метод выдачи карты из колоды
-  def issuing_card
-    @deck.pop
-  end
-  # метод удаления карты из колоды
+
+  # метод выдачи и удаления карты из колоды
   def delete_card
     @deck.pop
   end
